@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/plainbg"
+    android:id="@+id/mainLayout"
+    android:orientation="vertical">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.03"></Space>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/mgutmLogo"
+        android:layout_gravity="center_horizontal|top"
+        android:background="@drawable/logo"
+        android:layout_weight="0.60" />
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.03" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.28"
+        android:id="@+id/buttonArea">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/leftSpace"
+            android:layout_weight="0.05" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/buttonsLayout"
+            android:orientation="vertical"
+            android:layout_weight="0.9">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Новостная лента"
+                android:id="@+id/newsPanel"
+                android:layout_weight="0.34"
+                android:background="@drawable/feed_todo"
+                android:layout_marginBottom="5dp"
+                android:clickable="true" />
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Информация об университете"
+                android:id="@+id/categoriesPanel"
+                android:layout_weight="0.33"
+                android:background="@drawable/content_todo"
+                android:layout_marginBottom="5dp"
+                android:clickable="true" />
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Контакты"
+                android:id="@+id/contactsPanel"
+                android:layout_weight="0.33"
+                android:background="@drawable/contacts_todo"
+                android:layout_marginBottom="5dp"
+                android:clickable="true" />
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="Избранное"
+                android:id="@+id/savedItems"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.33"
+                android:background="@drawable/saved_todo"
+                android:clickable="true" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/rightSpace"
+            android:layout_weight="0.05" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.025" />
+
+
+</LinearLayout>

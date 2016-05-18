@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bground"
+    android:id="@+id/newsLayout"
+    android:theme="@android:style/Theme.Holo.NoActionBar">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/imgLayout"
+        android:clickable="true">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.75"
+        android:id="@+id/mainLayout"
+        android:baselineAligned="false">
+
+        <Space
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05"
+            android:id="@+id/leftSpace"></Space>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:id="@+id/buttonsLayout">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:id="@+id/newsButton"
+                android:background="@drawable/news_todo"
+                android:layout_weight="0.3"
+                android:clickable="true"
+                android:layout_marginBottom="15dp" />
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:id="@+id/advButton"
+                android:background="@drawable/adv_todo"
+                android:layout_weight="0.3"
+                android:clickable="true"
+                android:layout_marginBottom="15dp" />
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:id="@+id/eventsButton"
+                android:background="@drawable/events_todo"
+                android:layout_weight="0.3"
+                android:clickable="true"
+                android:layout_marginBottom="20dp" />
+
+        </LinearLayout>
+
+        <Space
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.05"
+            android:id="@+id/rightSpace" />
+
+    </LinearLayout>
+</LinearLayout>

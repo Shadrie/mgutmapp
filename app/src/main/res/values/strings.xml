@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MgutmApp</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_normal">Стандартный вид</string>
+    <string name="action_simple">Только текст</string>
+    <string name="action_menu">Меню</string>
+    <string name="action_fave">Сохранить</string>
+</resources>

@@ -1,0 +1,59 @@
+#branding {
+    display:none!important;
+  }
+  
+.decor {
+    display:none;
+  }
+  
+.leftbar-wrap {
+    display:none;
+  }
+  
+#nav-main {
+    display:none;
+  }
+  
+#site-info {
+    display:none;
+  }
+  
+#second-nav {
+    display:none;
+  }
+  
+#content-main, #wrapper{
+    float:none;width:100%!important;
+  }
+  
+#content-main-text {
+    width:100%!important;
+  }
+  
+h1 {
+    font-size:large!important;
+  }
+  
+.cnt {
+    padding: 0px 0px 0px 0px!important;
+  }
+  
+.wsbl {
+    padding: 0px 5px 0px 5px!important;
+  }
+  
+.yellow #content-container {
+    border-top: 0px!important;
+  }
+  
+table#plan {
+    font-size:medium!important;
+  }
+  
+table#chairs{
+    font-size:medium!important;
+  }
+  
+table#meeting{
+    font-size:medium!important;
+  }

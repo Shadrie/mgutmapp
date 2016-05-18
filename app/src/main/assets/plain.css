@@ -1,0 +1,83 @@
+#branding {
+    display:none!important;
+  }
+
+.decor {
+    display:none;
+  }
+
+.leftbar-wrap {
+    display:none;
+  }
+
+#nav-main {
+    display:none;
+  }
+
+#site-info {
+    display:none;
+  }
+
+#second-nav {
+    display:none;
+  }
+
+#content-main, #wrapper {
+    float:none;
+    width:100%!important;
+  }
+
+#content-main-text {
+    width:100%!important;
+  }
+
+.yellow #content-container {
+    border-top: 0px!important;
+  }
+
+table#plan {
+    font-size:medium!important;
+  }
+
+table#chairs {
+    font-size:medium!important;
+  }
+
+table#meeting {
+    font-size:medium!important;
+  }
+
+table, thead, tbody, th, td, tr { 
+    display: block!important; 
+    background: white!important; 
+    border: 1px solid black!important; 
+	}
+  
+td,th {
+    border: 0px solid black!important; 
+  }  
+  
+* {
+    font-size: 100%!important;
+    font-family: Helvetica!important;
+    color: black!important;
+    font-weight: normal!important;
+    padding: 0px 0px 0px 0px!important;
+    text-indent: 0!important;
+    height: auto!important;
+    width: auto!important;
+    text-align: left!important;
+    margin-left: 0px!important;
+  }
+
+img {
+    display:none!important;
+  }
+
+.wsbl {
+    padding: 0px 5px 0px 5px!important;
+  }
+
+a {
+    color: blue!important;
+  }
