@@ -8,7 +8,6 @@
         android:id="@+id/elvMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false"
         android:longClickable="true">
     </ExpandableListView>
 </LinearLayout>

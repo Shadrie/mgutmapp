@@ -4,8 +4,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.Toast;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -40,6 +44,15 @@ public class HistoryActivity extends AppCompatActivity {
         elvMain = (ExpandableListView) findViewById(R.id.elvMain);
         if (elvMain != null) {
             elvMain.setAdapter(sctAdapter);
+            elvMain.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(getApplicationContext(), "Long Click!", Toast.LENGTH_SHORT).show();
+                    final String LOG_TAG = "myLogs";
+                    Log.d(LOG_TAG, "Long ");
+                    return false;
+                }
+            });
         }
     }
 
