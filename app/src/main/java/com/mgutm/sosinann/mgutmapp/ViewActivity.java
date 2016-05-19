@@ -25,7 +25,7 @@ import java.io.InputStream;
 
 public class ViewActivity extends AppCompatActivity {
 
-    DBHelper dbHelper;
+    DB db;
     final String LOG_TAG = "myLogs";
 
     @SuppressLint("NewApi")
@@ -185,7 +185,6 @@ public class ViewActivity extends AppCompatActivity {
         simpleView.loadUrl(siteUrl);
         menuView.loadUrl(siteUrl);
 //warning
-        dbHelper = new DBHelper(this);
     }
 
     @Override
@@ -225,6 +224,8 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     public void onFavouriteMenuClick(MenuItem item) {
+        db = new DB(this);
+        db.open();
         final TextView nameView = (TextView) findViewById(R.id.nameView);
         final TextView urlView = (TextView) findViewById(R.id.urlView);
         final TextView contentView = (TextView) findViewById(R.id.contentView);
@@ -234,18 +235,23 @@ public class ViewActivity extends AppCompatActivity {
         String urlData = urlView.getText().toString();
         String contentData = contentView.getText().toString();
         // подключаемся к БД
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //SQLiteDatabase favesDB = dbHelper.getWritableDatabase();
 
         cv.put("title", titleData);
         //cv.put("url", urlData);
         cv.put("content", contentData);
         // вставляем запись и получаем ее ID
-        long rowID = db.insert("favourites", null, cv);
+        long rowID = db.mDB.insert("favourites", null, cv);
         Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-        dbHelper.close();
+        db.close();
         Log.d(LOG_TAG, "title " + nameView.getText().toString());
         Toast.makeText(getApplicationContext(), "Сохранено!", Toast.LENGTH_SHORT).show();
     }
+
+   /* protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+    }*/
     // Inject CSS method: read style.css from assets folder
 // Append stylesheet to document head
 

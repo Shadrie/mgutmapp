@@ -1,5 +1,6 @@
 package com.mgutm.sosinann.mgutmapp;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 public class HistoryActivity extends AppCompatActivity {
 
     ExpandableListView elvMain;
-    DB db;
+    static DB db;
+    static Dialog delDialog;
+    public static int stringID;
 
     /** Called when the activity is first created. */
     @SuppressWarnings("deprecation")
@@ -25,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
         // подключаемся к БД
         db = new DB(this);
         db.open();
+        delDialog = new Dialog();
 
         // готовим данные по группам для адаптера
         Cursor cursor = db.getTitleData();
@@ -49,10 +53,22 @@ public class HistoryActivity extends AppCompatActivity {
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(getApplicationContext(), "Long Click!", Toast.LENGTH_SHORT).show();
                     final String LOG_TAG = "myLogs";
-                    Log.d(LOG_TAG, "Long ");
+                    Log.d(LOG_TAG, "Long " + position);
+                    stringID = position + 1;
+                    delDialog.show(getFragmentManager(), "delDialog");
                     return false;
                 }
             });
+        }
+    }
+
+    public static void onDelete() {
+        final String LOG_TAG = "myLogs";
+        Log.d(LOG_TAG, "Результат диалога: " + delDialog.RESULT);
+        if (delDialog.RESULT.equals("Да")) {
+            Log.d(LOG_TAG, "Удаляемая запись: " + stringID);
+            db.mDB.delete(db.FAVES_TABLE, "_id = " + stringID, null);
+//обновить вид экрана
         }
     }
 

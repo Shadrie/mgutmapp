@@ -9,4 +9,8 @@
     <string name="action_simple">Только текст</string>
     <string name="action_menu">Меню</string>
     <string name="action_fave">Сохранить</string>
+
+    <string name="dialog_msg">Удалить выбранную запись?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>

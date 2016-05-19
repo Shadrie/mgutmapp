@@ -1,6 +1,5 @@
 package com.mgutm.sosinann.mgutmapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +14,7 @@ public class DB {
     String[] column = null;
 
     // имя таблицы компаний, поля и запрос создания
-    private static final String FAVES_TABLE = "favourites";
+    public static final String FAVES_TABLE = "favourites";
     public static final String FAVES_COLUMN_ID = "_id";
     public static final String TITLE_COLUMN = "title";
     public static final String CONTENT_COLUMN = "content";
@@ -25,14 +24,16 @@ public class DB {
 
     // имя таблицы телефонов, поля и запрос создания
 
-    private final Context mCtx;
+    public final Context mCtx;
 
-    private DBHelper mDBHelper;
+    public DBHelper mDBHelper;
     public SQLiteDatabase mDB;
 
     public DB(Context ctx) {
         mCtx = ctx;
     }
+
+
 
     // открываем подключение
     public void open() {
