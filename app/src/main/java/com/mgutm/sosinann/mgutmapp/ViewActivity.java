@@ -246,11 +246,6 @@ public class ViewActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "title " + nameView.getText().toString());
         Toast.makeText(getApplicationContext(), "Сохранено!", Toast.LENGTH_SHORT).show();
     }
-
-   /* protected void onDestroy() {
-        super.onDestroy();
-        db.close();
-    }*/
     // Inject CSS method: read style.css from assets folder
 // Append stylesheet to document head
 

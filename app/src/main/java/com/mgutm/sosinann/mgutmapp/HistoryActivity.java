@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    final static String LOG_TAG = "myLogs";
     ExpandableListView elvMain;
     static DB db;
     static Dialog delDialog;
@@ -40,7 +43,6 @@ public class HistoryActivity extends AppCompatActivity {
         // готовим данные по группам для адаптера
         Cursor cursor = db.getTitleData();
         int row = cursor.getCount();
-        final String LOG_TAG = "myLogs";
         Log.d(LOG_TAG, "Row " + row);
         startManagingCursor(cursor);
         // сопоставление данных и View для групп
@@ -62,7 +64,6 @@ public class HistoryActivity extends AppCompatActivity {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(getApplicationContext(), "Long Click!", Toast.LENGTH_SHORT).show();
-                    final String LOG_TAG = "myLogs";
                     TextView v = (TextView)view.findViewById(android.R.id.text1);
                     String itemId = v.getText().toString();
                     Log.d(LOG_TAG, "Long test " + itemId);
@@ -75,7 +76,6 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     public static void onDelete() {
-        final String LOG_TAG = "myLogs";
         Log.d(LOG_TAG, "Результат диалога: " + delDialog.RESULT);
         if (delDialog.RESULT.equals("Да")) {
             Log.d(LOG_TAG, "Удаляемая запись: " + stringID);
@@ -111,5 +111,20 @@ public class HistoryActivity extends AppCompatActivity {
             int idColumn = groupCursor.getColumnIndex(DB.FAVES_COLUMN_ID);
             return db.getContentData(groupCursor.getInt(idColumn));
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.history_menu, menu);
+        return true;
+    }
+
+    public void onClearMenuClick(MenuItem item) {
+        db = new DB(this);
+        db.open();
+        int clearCount = db.mDB.delete(db.FAVES_TABLE, null, null);
+        Log.d(LOG_TAG, "deleted rows count = " + clearCount);
+        db.close();
+        goToHistoryActivity(mContext);
     }
 }

@@ -13,4 +13,6 @@
     <string name="dialog_msg">Удалить выбранную запись?</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+
+    <string name="action_clear">Очистить</string>
 </resources>
