@@ -1,7 +1,8 @@
 package com.mgutm.sosinann.mgutmapp;
 
-import android.app.DialogFragment;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -17,13 +19,18 @@ public class HistoryActivity extends AppCompatActivity {
     ExpandableListView elvMain;
     static DB db;
     static Dialog delDialog;
-    public static int stringID;
+    public static String stringID;
+    private static Context mContext;
+    static Activity activity;
+
 
     /** Called when the activity is first created. */
     @SuppressWarnings("deprecation")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history);
+        mContext = this;
+        activity = this;
 
         // подключаемся к БД
         db = new DB(this);
@@ -32,6 +39,9 @@ public class HistoryActivity extends AppCompatActivity {
 
         // готовим данные по группам для адаптера
         Cursor cursor = db.getTitleData();
+        int row = cursor.getCount();
+        final String LOG_TAG = "myLogs";
+        Log.d(LOG_TAG, "Row " + row);
         startManagingCursor(cursor);
         // сопоставление данных и View для групп
         String[] groupFrom = { DB.TITLE_COLUMN };
@@ -53,8 +63,10 @@ public class HistoryActivity extends AppCompatActivity {
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(getApplicationContext(), "Long Click!", Toast.LENGTH_SHORT).show();
                     final String LOG_TAG = "myLogs";
-                    Log.d(LOG_TAG, "Long " + position);
-                    stringID = position + 1;
+                    TextView v = (TextView)view.findViewById(android.R.id.text1);
+                    String itemId = v.getText().toString();
+                    Log.d(LOG_TAG, "Long test " + itemId);
+                    stringID = itemId;
                     delDialog.show(getFragmentManager(), "delDialog");
                     return false;
                 }
@@ -67,9 +79,17 @@ public class HistoryActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Результат диалога: " + delDialog.RESULT);
         if (delDialog.RESULT.equals("Да")) {
             Log.d(LOG_TAG, "Удаляемая запись: " + stringID);
-            db.mDB.delete(db.FAVES_TABLE, "_id = " + stringID, null);
+            db.mDB.delete(db.FAVES_TABLE, "title = '" + stringID + "'", null);
 //обновить вид экрана
+            Log.d(LOG_TAG, "Reload");
+            goToHistoryActivity(mContext);
         }
+    }
+
+    public static void goToHistoryActivity(Context mContext) {
+        Intent login = new Intent(mContext, HistoryActivity.class);
+        mContext.startActivity(login);
+        activity.finish();
     }
 
     protected void onDestroy() {
