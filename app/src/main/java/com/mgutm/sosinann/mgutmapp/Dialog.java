@@ -15,17 +15,18 @@ import android.widget.Button;
 public class Dialog extends DialogFragment implements View.OnClickListener {
     final String LOG_TAG = "myLogs";
     public String RESULT;
-    DB db;
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("MgutmApp");
+        getDialog().setTitle("@string/app_name");
         View v = inflater.inflate(R.layout.dialog_msg, null);
         v.findViewById(R.id.buttonAgree).setOnClickListener(this);
         v.findViewById(R.id.buttonDisagree).setOnClickListener(this);
         return v;
     }
 
+    @Override
     public void onClick(View v) {
         RESULT = (String) ((Button) v).getText();
         Log.d(LOG_TAG, "Результат: " + RESULT);
@@ -40,11 +41,13 @@ public class Dialog extends DialogFragment implements View.OnClickListener {
         }
     }
 
+    @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         Log.d(LOG_TAG, "Выход из диалога");
     }
 
+    @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
         Log.d(LOG_TAG, "Отмена диалога");

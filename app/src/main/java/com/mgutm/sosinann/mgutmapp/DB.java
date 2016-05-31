@@ -24,20 +24,20 @@ public class DB {
 
     // имя таблицы телефонов, поля и запрос создания
 
-    public final Context mCtx;
+    public final Context myContext;
 
     public DBHelper mDBHelper;
     public SQLiteDatabase mDB;
 
-    public DB(Context ctx) {
-        mCtx = ctx;
+    public DB(Context context) {
+        myContext = context;
     }
 
 
 
     // открываем подключение
     public void open() {
-        mDBHelper = new DBHelper(mCtx, DB_NAME, null, DB_VERSION);
+        mDBHelper = new DBHelper(myContext, DB_NAME, null, DB_VERSION);
         mDB = mDBHelper.getWritableDatabase();
     }
 
