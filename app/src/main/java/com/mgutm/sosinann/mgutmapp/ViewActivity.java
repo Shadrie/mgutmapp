@@ -3,6 +3,7 @@ package com.mgutm.sosinann.mgutmapp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
@@ -123,6 +124,7 @@ public class ViewActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
                 // Inject CSS when page is done loading
                 applyCSS(webView, "custom.css");
+                webView.loadUrl("javascript: window.CallToAnAndroidFunction.setVisible()");
                 //use client interface to set variables Работает так: 1)Написать интерфейс 2)Приделать ему название и вставить в клиент 3)ЖС запрос
                 view.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
                 view.loadUrl("javascript:window.INTERFACE2.processContent(document.getElementsByTagName('title')[0].innerText);");
@@ -181,6 +183,9 @@ public class ViewActivity extends AppCompatActivity {
         menuView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         contentView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
+//
+        webView.addJavascriptInterface(new showWeb(), "CallToAnAndroidFunction");
+        //
         Intent intent = getIntent();
         String siteUrl = intent.getStringExtra("url");
         webView.loadUrl(siteUrl);
@@ -252,11 +257,6 @@ public class ViewActivity extends AppCompatActivity {
     // Inject CSS method: read style.css from assets folder
 // Append stylesheet to document head
 
-    private void enableView() {
-        final WebView webView = (WebView) findViewById(R.id.webView);
-        webView.setVisibility(View.VISIBLE);
-    }
-
     private void applyCSS(WebView view, String css) {
         try {
             InputStream inputStream = getAssets().open(css);
@@ -271,18 +271,22 @@ public class ViewActivity extends AppCompatActivity {
                     "style.innerHTML = window.atob('" + encoded + "');" +
                     "parent.appendChild(style)" +
                     "})()");
-            enableView();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*try {
-            Thread.sleep(1000);                 //1000 milliseconds is one second.
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }*/
-        //disable foreground
-        //view.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
-        LinearLayout tabContent = (LinearLayout) findViewById(R.id.tabContent);
-        //tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
+    }
+
+    public class showWeb {
+        @JavascriptInterface
+        public void setVisible() {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    final WebView webView = (WebView) findViewById(R.id.webView);
+                    webView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
     }
 }
