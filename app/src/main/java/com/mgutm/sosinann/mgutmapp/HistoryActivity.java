@@ -67,6 +67,8 @@ public class HistoryActivity extends AppCompatActivity {
                     TextView v = (TextView)view.findViewById(android.R.id.text1);
                     String itemId = v.getText().toString();
                     Log.d(LOG_TAG, "Long test " + itemId);
+                    Log.d(LOG_TAG, "Long tes2 " + position);
+                    Log.d(LOG_TAG, "Long test3 " + Long.toString(id));
                     stringID = itemId;
                     delDialog.show(getFragmentManager(), "delDialog");
                     return false;

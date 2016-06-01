@@ -41,10 +41,13 @@ public class ViewActivity extends AppCompatActivity {
         final TextView contentView = (TextView) findViewById(R.id.contentView);
 
 //set loading foreground
-        webView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        simpleView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        menuView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        //webView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        //simpleView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        //menuView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        //tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        webView.setVisibility(View.GONE);
+        simpleView.setVisibility(View.GONE);
+        menuView.setVisibility(View.GONE);
 
         WebSettings webSettings = webView.getSettings();
         WebSettings simpleSettings = simpleView.getSettings();
@@ -249,6 +252,11 @@ public class ViewActivity extends AppCompatActivity {
     // Inject CSS method: read style.css from assets folder
 // Append stylesheet to document head
 
+    private void enableView() {
+        final WebView webView = (WebView) findViewById(R.id.webView);
+        webView.setVisibility(View.VISIBLE);
+    }
+
     private void applyCSS(WebView view, String css) {
         try {
             InputStream inputStream = getAssets().open(css);
@@ -263,17 +271,18 @@ public class ViewActivity extends AppCompatActivity {
                     "style.innerHTML = window.atob('" + encoded + "');" +
                     "parent.appendChild(style)" +
                     "})()");
+            enableView();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
+        /*try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
-        }
+        }*/
         //disable foreground
-        view.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
+        //view.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
         LinearLayout tabContent = (LinearLayout) findViewById(R.id.tabContent);
-        tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
+        //tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.empty, null));
     }
 }
