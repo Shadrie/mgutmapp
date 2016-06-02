@@ -2,7 +2,6 @@ package com.mgutm.sosinann.mgutmapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton categoriesPanel;
     ImageButton contactsPanel;
     ImageButton savedItems;
-    private String[] extraItems;
-    private ListView extraView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +31,20 @@ public class MainActivity extends AppCompatActivity {
         savedItems = (ImageButton) findViewById(R.id.savedItems);
 
         // get list items from strings.xml
-        extraItems = getResources().getStringArray(R.array.extra_array);
+        String[] extraItems = getResources().getStringArray(R.array.extra_array);
 
         // get ListView defined in activity_main.xml
-        extraView = (ListView) findViewById(R.id.left_drawer);
+        ListView extraView = (ListView) findViewById(R.id.left_drawer);
 
         // Set the adapter for the list view
-        extraView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_item, extraItems));
+        if (extraView != null) {
+            extraView.setAdapter(new ArrayAdapter<>(this,
+                    R.layout.drawer_item, extraItems));
+        }
 
-        extraView.setOnItemClickListener(new DrawerItemClickListener());
+        if (extraView != null) {
+            extraView.setOnItemClickListener(new DrawerItemClickListener());
+        }
 
         View.OnClickListener NewsPanelClick = new View.OnClickListener() {
             @Override

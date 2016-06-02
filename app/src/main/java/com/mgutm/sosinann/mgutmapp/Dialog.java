@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * Created by 38.2 on 19.05.2016.
- */
 public class Dialog extends DialogFragment implements View.OnClickListener {
     final String LOG_TAG = "myLogs";
     public String RESULT;

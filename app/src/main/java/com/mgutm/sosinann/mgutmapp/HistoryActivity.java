@@ -82,9 +82,9 @@ public class HistoryActivity extends AppCompatActivity {
         if (delDialog.RESULT.equals("Да")) {
             Log.d(LOG_TAG, "Удаляемая запись: " + stringID);
             //db.mDB.delete(db.FAVES_TABLE, "title = '" + stringID + "'", null);
-            db.mDB.execSQL("delete from " + db.FAVES_TABLE +
-                    " where title = '" +stringID+ "' and " + db.FAVES_COLUMN_ID +" in (select "+
-                    db.FAVES_COLUMN_ID +" from "+ db.FAVES_TABLE+" order by _id LIMIT 1);");
+            db.mDB.execSQL("delete from " + DB.FAVES_TABLE +
+                    " where title = '" +stringID+ "' and " + DB.FAVES_COLUMN_ID +" in (select "+
+                    DB.FAVES_COLUMN_ID +" from "+ DB.FAVES_TABLE +" where title = '" +stringID+ "' order by _id LIMIT 1);");
 //обновить вид экрана
             Log.d(LOG_TAG, "Reload");
             goToHistoryActivity(mContext);
@@ -127,7 +127,7 @@ public class HistoryActivity extends AppCompatActivity {
     public void onClearMenuClick(MenuItem item) {
         db = new DB(this);
         db.open();
-        int clearCount = db.mDB.delete(db.FAVES_TABLE, null, null);
+        int clearCount = db.mDB.delete(DB.FAVES_TABLE, null, null);
         Log.d(LOG_TAG, "deleted rows count = " + clearCount);
         db.close();
         goToHistoryActivity(mContext);

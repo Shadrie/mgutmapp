@@ -3,10 +3,8 @@ package com.mgutm.sosinann.mgutmapp;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -18,17 +16,17 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.InputStream;
 
+@SuppressWarnings("ALL")
 public class ViewActivity extends AppCompatActivity {
 
     DB db;
     final String LOG_TAG = "myLogs";
 
-    @SuppressLint("NewApi")
+    @SuppressLint({"NewApi", "SetJavaScriptEnabled"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +34,15 @@ public class ViewActivity extends AppCompatActivity {
         final WebView webView = (WebView) findViewById(R.id.webView);
         final WebView simpleView = (WebView) findViewById(R.id.simpleView);
         final WebView menuView = (WebView) findViewById(R.id.menuView);
-        final LinearLayout tabContent = (LinearLayout) findViewById(R.id.tabContent);
         final TextView nameView = (TextView) findViewById(R.id.nameView);
         final TextView urlView = (TextView) findViewById(R.id.urlView);
         final TextView contentView = (TextView) findViewById(R.id.contentView);
 
-//set loading foreground
-        //webView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        //simpleView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        //menuView.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
-        //tabContent.setForeground(ResourcesCompat.getDrawable(getResources(), R.drawable.loading, null));
+        assert webView != null;
         webView.setVisibility(View.GONE);
+        assert simpleView != null;
         simpleView.setVisibility(View.GONE);
+        assert menuView != null;
         menuView.setVisibility(View.GONE);
 
         WebSettings webSettings = webView.getSettings();
@@ -94,11 +89,13 @@ public class ViewActivity extends AppCompatActivity {
             public void processContent(String aContent)
             {
                 final String content = aContent;
-                nameView.post(new Runnable() {
-                    public void run() {
-                        nameView.setText(content);
-                    }
-                });
+                if (nameView != null) {
+                    nameView.post(new Runnable() {
+                        public void run() {
+                            nameView.setText(content);
+                        }
+                    });
+                }
             }
         }
         //set interface for getting body content
@@ -128,7 +125,9 @@ public class ViewActivity extends AppCompatActivity {
                 //use client interface to set variables Работает так: 1)Написать интерфейс 2)Приделать ему название и вставить в клиент 3)ЖС запрос
                 view.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
                 view.loadUrl("javascript:window.INTERFACE2.processContent(document.getElementsByTagName('title')[0].innerText);");
-                urlView.setText(url);
+                if (urlView != null) {
+                    urlView.setText(url);
+                }
             }
 
             @Override
@@ -181,7 +180,6 @@ public class ViewActivity extends AppCompatActivity {
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         simpleView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         menuView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        contentView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
 //
         webView.addJavascriptInterface(new showWeb(), "CallToAnAndroidFunction");
@@ -208,6 +206,9 @@ public class ViewActivity extends AppCompatActivity {
         final WebView simpleView = (WebView) findViewById(R.id.simpleView);
         final WebView menuView = (WebView) findViewById(R.id.menuView);
         item.setChecked(true);
+        assert simpleView != null;
+        assert menuView != null;
+        assert webView != null;
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.action_normal:{
@@ -238,20 +239,27 @@ public class ViewActivity extends AppCompatActivity {
         final TextView contentView = (TextView) findViewById(R.id.contentView);
         ContentValues cv = new ContentValues();
         // получаем данные из полей ввода
-        String titleData = nameView.getText().toString();
-        String urlData = urlView.getText().toString();
-        String contentData = contentView.getText().toString();
-        // подключаемся к БД
-        //SQLiteDatabase favesDB = dbHelper.getWritableDatabase();
+        String titleData = null;
+        if (nameView != null) {
+            titleData = nameView.getText().toString();
+            Log.d(LOG_TAG, "Заголовок = " + titleData);
+        }
+        if (urlView != null) {
+            String urlData = urlView.getText().toString();
+            Log.d(LOG_TAG, "URL = " + urlData);
+        }
+        String contentData = null;
+        if (contentView != null) {
+            contentData = contentView.getText().toString();
+            Log.d(LOG_TAG, "Контент = " + contentData);
+        }
 
         cv.put("title", titleData);
-        //cv.put("url", urlData);
         cv.put("content", contentData);
         // вставляем запись и получаем ее ID
         long rowID = db.mDB.insert("favourites", null, cv);
         Log.d(LOG_TAG, "row inserted, ID = " + rowID);
         db.close();
-        Log.d(LOG_TAG, "title " + nameView.getText().toString());
         Toast.makeText(getApplicationContext(), "Сохранено!", Toast.LENGTH_SHORT).show();
     }
     // Inject CSS method: read style.css from assets folder
