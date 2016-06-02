@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         if (!DetectConnection.checkInternetConnection(this)) {
-            Toast.makeText(getApplicationContext(), "No Internet!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Подключение отсутствует!", Toast.LENGTH_SHORT).show();
         }
         else {
             contactsPanel.setOnClickListener(ContactsPanelClick);
@@ -95,11 +95,35 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             String clickedItem = ((TextView)view).getText().toString();
-            Log.d(LOG_TAG, "Клик = " + clickedItem);
-            if (clickedItem.equals("Оплата обучения")) {
-                Log.d(LOG_TAG, "Обрабатывается = " + clickedItem);
-                //CASEEEEEEEEEEEEEEEEEEE
+            String url = null;
+            Log.d(LOG_TAG, "Нажато = " + clickedItem);
+            switch(clickedItem) {
+                case "Оплата обучения":
+                    url = "http://mgutm.ru/oplata-za-obuchenie.php";
+                    break;
+                case "Стратегия развития":
+                    url = "http://mgutm.ru/kazachestvo/strategiya_razvitiya.php";
+                    break;
+                case "Значимые события":
+                    url = "http://mgutm.ru/znachemie_sobitiya.php";
+                    break;
+                case "Журнал Университетская жизнь":
+                    url = "http://mgutm.ru/jurnal/universitetskaya-zhizn.php?jur=http://j.mgutm.ru/index.php/01-yanvar-fevral-studencheskij-vypusk";
+                    break;
+                case "Видео Университета":
+                    url = "http://mgutm.ru/video_universiteta/";
+                    break;
+                case "Печатные издания Университета":
+                    url = "http://mgutm.ru/jurnal/";
+                    break;
+                case "Кластер непрерывного казачьего образования":
+                    url = "http://mgutm.ru/lektsii-pensioneram-kazakam/";
+                    break;
             }
+            Log.d(LOG_TAG, "URL = " + url);
+            Intent intent = new Intent(MainActivity.this, ViewActivity.class);
+            intent.putExtra("url", url);
+            startActivity(intent);
         }
     }
 }
