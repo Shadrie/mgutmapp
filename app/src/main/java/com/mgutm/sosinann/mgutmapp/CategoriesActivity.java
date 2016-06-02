@@ -11,6 +11,7 @@ package com.mgutm.sosinann.mgutmapp;
 
 public class CategoriesActivity extends AppCompatActivity {
 
+    // Переменные, соответсвующие элементам интерфейса определенного типа
     FrameLayout imgLayout;
     ImageButton aboutButton;
     ImageButton entrantButton;
@@ -26,7 +27,11 @@ public class CategoriesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Задать отображаемый макет
         setContentView(R.layout.categories);
+
+        // Определить элементы интерфейса из макетов, соответствующие заданным переменным
         imgLayout = (FrameLayout) findViewById(R.id.imgLayout);
         aboutButton = (ImageButton) findViewById(R.id.aboutButton);
         entrantButton = (ImageButton) findViewById(R.id.entrantButton);
@@ -39,6 +44,7 @@ public class CategoriesActivity extends AppCompatActivity {
         graduateButton = (ImageButton) findViewById(R.id.graduateButton);
         employeeButton = (ImageButton) findViewById(R.id.employeeButton);
 
+        // При нажатии на свободную область, производится возврат к главной странице
         View.OnClickListener GoHome = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +55,9 @@ public class CategoriesActivity extends AppCompatActivity {
         };
         imgLayout.setOnClickListener(GoHome);
 
+
+        // В зависимости от вызываемой функции, совершается переход в определенный раздел
+        // по заданному url-адресу
         View.OnClickListener AboutClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,8 +103,10 @@ public class CategoriesActivity extends AppCompatActivity {
             }
         };
 
+        // При наличии подключения, разработанные функции задаются определенным кнопкам,
+        // иначе выводится сообщение об ошибке подключения
         if (!DetectConnection.checkInternetConnection(this)) {
-            Toast.makeText(getApplicationContext(), "No Internet!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Подключение отсутствует!", Toast.LENGTH_SHORT).show();
         }
         else {
             aboutButton.setOnClickListener(AboutClick);
