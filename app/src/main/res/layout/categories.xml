@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="90dp"
         android:id="@+id/imgLayout"
-        android:clickable="false"
+        android:clickable="true"
         android:background="@drawable/bglogo"
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
@@ -96,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/eleButton"
+                    android:scaleType="fitXY"
                     android:background="@drawable/ele_todo"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />
@@ -104,6 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/secondButton"
+                    android:scaleType="fitXY"
                     android:background="@drawable/second_todo"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />
@@ -112,6 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/scienceButton"
+                    android:scaleType="fitXY"
                     android:background="@drawable/science_todo"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />
@@ -119,6 +122,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
                     android:id="@+id/graduateButton"
                     android:background="@drawable/graduate_todo"
                     android:layout_marginBottom="15dp"
@@ -128,6 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/employeeButton"
+                    android:scaleType="fitXY"
                     android:background="@drawable/employee_todo"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />

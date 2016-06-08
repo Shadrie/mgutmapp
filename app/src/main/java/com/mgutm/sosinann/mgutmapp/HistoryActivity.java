@@ -2,7 +2,6 @@ package com.mgutm.sosinann.mgutmapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -145,7 +144,7 @@ public class HistoryActivity extends AppCompatActivity {
                     childLayout, childFrom, childTo);
         }
 
-        // Курсор, получающий данные родительского элемента по дочернему
+        // Курсор, получающий данные дочернего элемента по родительскому курсору
         protected Cursor getChildrenCursor(Cursor groupCursor) {
             // получаем курсор по элементам для конкретной группы
             int idColumn = groupCursor.getColumnIndex(DB.FAVES_COLUMN_ID);

@@ -103,6 +103,42 @@ public class CategoriesActivity extends AppCompatActivity {
             }
         };
 
+        View.OnClickListener SecondClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesActivity.this, ViewActivity.class);
+                intent.putExtra("url", "http://mgutm.ru/second-education/");
+                startActivity(intent);
+            }
+        };
+
+        View.OnClickListener ScienceClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesActivity.this, ViewActivity.class);
+                intent.putExtra("url", "http://mgutm.ru/science/");
+                startActivity(intent);
+            }
+        };
+
+        View.OnClickListener GraduateClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesActivity.this, ViewActivity.class);
+                intent.putExtra("url", "http://mgutm.ru/graduate/");
+                startActivity(intent);
+            }
+        };
+
+        View.OnClickListener EmployeeClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesActivity.this, ViewActivity.class);
+                intent.putExtra("url", "http://mgutm.ru/employee/");
+                startActivity(intent);
+            }
+        };
+
         // При наличии подключения, разработанные функции задаются определенным кнопкам,
         // иначе выводится сообщение об ошибке подключения
         if (!DetectConnection.checkInternetConnection(this)) {
@@ -114,6 +150,10 @@ public class CategoriesActivity extends AppCompatActivity {
             studentButton.setOnClickListener(StudentClick);
             doctorButton.setOnClickListener(DoctorClick);
             olimpButton.setOnClickListener(OlimpClick);
+            secondButton.setOnClickListener(SecondClick);
+            scienceButton.setOnClickListener(ScienceClick);
+            graduateButton.setOnClickListener(GraduateClick);
+            employeeButton.setOnClickListener(EmployeeClick);
         }
     }
 }

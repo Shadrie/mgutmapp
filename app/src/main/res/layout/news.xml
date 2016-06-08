@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bground"
+    android:background="@drawable/plainbg"
     android:id="@+id/newsLayout"
     android:theme="@android:style/Theme.Holo.NoActionBar">
 
@@ -10,7 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:id="@+id/imgLayout"
-        android:clickable="true">
+        android:clickable="true"
+        android:background="@drawable/bglogo"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true">
 
     </FrameLayout>
 
@@ -35,10 +39,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.9"
-            android:id="@+id/buttonsLayout">
+            android:id="@+id/buttonsLayout"
+            android:gravity="center">
 
             <ImageButton
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:id="@+id/newsButton"
                 android:background="@drawable/news_todo"
@@ -47,7 +52,7 @@
                 android:layout_marginBottom="15dp" />
 
             <ImageButton
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:id="@+id/advButton"
                 android:background="@drawable/adv_todo"
@@ -56,7 +61,7 @@
                 android:layout_marginBottom="15dp" />
 
             <ImageButton
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:id="@+id/eventsButton"
                 android:background="@drawable/events_todo"
