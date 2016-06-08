@@ -3,13 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/newsScreen"
-    android:background="@drawable/bground">
+    android:background="@drawable/plainbg">
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="90dp"
         android:id="@+id/imgLayout"
-        android:clickable="false">
+        android:clickable="false"
+        android:background="@drawable/bglogo"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true">
 
     </FrameLayout>
 
@@ -42,34 +46,38 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
-                android:id="@+id/buttons_layout">
+                android:id="@+id/buttons_layout"
+                android:gravity="center">
 
                 <ImageButton
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/aboutButton"
                     android:background="@drawable/about_todo"
+                    android:scaleType="fitXY"
                     android:clickable="true"
                     android:layout_marginBottom="15dp" />
 
                 <ImageButton
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/entrantButton"
                     android:background="@drawable/entrant_todo"
+                    android:scaleType="fitXY"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/studentButton"
                     android:background="@drawable/students_todo"
+                    android:scaleType="fitXY"
                     android:layout_marginBottom="15dp"
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/doctorButton"
                     android:background="@drawable/doctors_todo"
@@ -77,7 +85,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/olimpButton"
                     android:background="@drawable/olimp_todo"
@@ -85,7 +93,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/eleButton"
                     android:background="@drawable/ele_todo"
@@ -93,7 +101,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/secondButton"
                     android:background="@drawable/second_todo"
@@ -101,7 +109,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/scienceButton"
                     android:background="@drawable/science_todo"
@@ -109,7 +117,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/graduateButton"
                     android:background="@drawable/graduate_todo"
@@ -117,7 +125,7 @@
                     android:clickable="true" />
 
                 <ImageButton
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/employeeButton"
                     android:background="@drawable/employee_todo"
