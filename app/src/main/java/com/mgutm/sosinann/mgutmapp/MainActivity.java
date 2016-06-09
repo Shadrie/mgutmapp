@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -157,5 +159,17 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("url", url);
             startActivity(intent);
         }
+    }
+
+    // Создание меню по макету меню quit_menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.quit_menu, menu);
+        return true;
+    }
+
+    // Действия, совершаемые по клику пункта меню "Выйти"
+    public void onQuitMenuClick(MenuItem item) {
+        this.finishAffinity();
     }
 }

@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">Закрыть выезжающее меню</string>
 
     <string name="action_settings">Настройки</string>
+    <string name="action_quit">Выйти</string>
     <string name="action_normal">Стандартный вид</string>
     <string name="action_simple">Только текст</string>
     <string name="action_menu">Меню</string>
