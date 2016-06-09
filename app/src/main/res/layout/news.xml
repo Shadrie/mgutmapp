@@ -7,8 +7,8 @@
     android:theme="@android:style/Theme.Holo.NoActionBar">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/imgLayout"
         android:clickable="true"
         android:background="@drawable/bglogo"
@@ -42,30 +42,30 @@
             android:id="@+id/buttonsLayout"
             android:gravity="center">
 
+
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/newsButton"
                 android:background="@drawable/news_todo"
-                android:layout_weight="0.3"
+                android:scaleType="fitXY"
                 android:clickable="true"
-                android:layout_marginBottom="15dp" />
+                android:layout_marginBottom="50dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:id="@+id/advButton"
                 android:background="@drawable/adv_todo"
-                android:layout_weight="0.3"
                 android:clickable="true"
-                android:layout_marginBottom="15dp" />
+                android:layout_marginBottom="50dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:id="@+id/eventsButton"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
                 android:background="@drawable/events_todo"
-                android:layout_weight="0.3"
                 android:clickable="true"
                 android:layout_marginBottom="20dp" />
 
