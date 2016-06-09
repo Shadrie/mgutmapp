@@ -65,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
+                android:id="@+id/eventsButton"
                 android:background="@drawable/events_todo"
                 android:clickable="true"
                 android:layout_marginBottom="20dp" />
